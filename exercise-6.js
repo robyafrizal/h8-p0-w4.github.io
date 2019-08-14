@@ -1,13 +1,4 @@
-/*
-DIGIT PERKALIAN MINIMUM
-
-PSEUDOCODE
-  START
-  SET function digitPerkalianMinimum with parameter(angka)
-  STORE
-
-  END
-*/
+//DIGIT PERKALIAN MINIMUM
 
 function digitPerkalianMinimum(angka) {
   // you can only write your code here!
