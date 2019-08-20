@@ -1,26 +1,58 @@
 //TOKO X
 
 function countProfit(shoppers) {
+  //Data barang bisa disimpan didalam fungsi atau diluar fungsi
   let listBarang = [ ['Sepatu Stacattu', 1500000, 10],
                      ['Baju Zoro', 500000, 2],
                      ['Sweater Uniklooh', 175000, 1]
                    ];
   // you can only write your code here!
-  var output = []
-  var object = {product: '',
-                shoppers: [],
-                leftOver: 0,
-                totalProfit: 0}
-  
-    for(var i = 0; i < listBarang.length; i++) {
-      if(listBarang[i][3] > 0 ) {
-        object['leftOver'].push(listbarang[i][3])
-        
+  var result = []
+  var shoppersName = []
+  var profit = []
+
+  for(var i = 0; i < listBarang.length; i++) {
+    result.push(listBarang[i][2])
+    shoppersName.push([])
+    profit.push(0)
+  }
+
+  for(var i = 0; i < shoppers.length; i++) {
+    for(var j = 0; j < listBarang.length; j++) {
+      if(shoppers[i].product === listBarang[j][0]) { // dicek apakah barang yang ingin dibeli, tersedia dijual ditoko
+        if(result[j] >= shoppers[i].amount) { //jika barang tersedia untuk dijual, dicek lagi apakah masih ada stok / tidak
+          result[j] -= shoppers[i].amount //jika masih ada stok, value stok lama dikurang
+          shoppersName[j].push(shoppers[i].name) //nama pembeli dimasukkan kedaftar
+          profit[j] = listBarang[j][1] * (listBarang[j][2] - result[j])
+          //profit dikalkulasikan dan diupdate jika ada pembeli bertambah
+        }
       }
-
-
     }
   }
+
+  //pembuatan objek untuk di return sebagai output
+  var output = []
+  if(!shoppers[0]) {
+    return output
+  }
+  for(var i = 0; i < listBarang.length; i++) {
+    var object = {
+      merk : listBarang[i][0],
+      shopper : shoppersName[i],
+      leftOver : result[i],
+      totalProfit : profit[i]
+    }
+
+    //Bentuk penulitsan lain dari object
+    // var object = {}
+    //   object.merk = listBarang[i][0]
+    //   object.shopper = shoppersName[i]
+    //   object.leftOver = result[i]
+    //   object.totalProfit = profit[i]
+
+    output[i] = object
+  }
+  return output
 }
 
 // TEST CASES

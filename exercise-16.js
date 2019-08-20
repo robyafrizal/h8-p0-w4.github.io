@@ -3,6 +3,28 @@
 
 function graduates (students) {
   // Code disini
+  var output = []
+  if(students.length === 0) {
+    return output
+  }
+
+  for(var i = 0; i < students.length; i++) {
+    var result = {}
+    if(!output[students[i].class]) {
+      output[students[i].class] = []
+      if(students[i].score >= 75) {
+        result.name = students[i].name
+        result.score = students[i].score
+        output[students[i].class].push(result)
+      }
+    }
+    else if (students[i].score >= 75) {
+      result.name = students[i].name
+      result.score = students[i].score
+      output[students[i].class].push(result)
+    }
+  }
+  return output
 }
 
 console.log(graduates([
