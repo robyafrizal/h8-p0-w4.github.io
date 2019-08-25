@@ -10,7 +10,7 @@ function highestScore(students) {
     for(var i = 0; i < students.length; i++) {
         if(!output[students[i].class]) {
           output[students[i].class] = {
-            name : students[i].class,
+            name : students[i].name,
             score : students[i].score
           }
         }
